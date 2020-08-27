@@ -1,0 +1,44 @@
+##Using amass to do complete subdomain find
+
+amass enum -active -d better.com -brute -w /home/tectra/Desktop/Raj/user/Web/websecresearch/wordlists/SecLists-master/Discovery/DNS/deepmagic.com-prefixes-top50000.txt -src -ip -dir amass4owasp -config /home/tectra/Desktop/Raj/user/Web/Tools/Amass/examples/config.ini -o amass_results.txt
+
+###########oneliner for checking open ports
+
+sudo masscan $(dig +short preprod.zolostays.com | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1) -p0-65535 --rate 1000 --wait 3 2> /dev/null | grep -o -P '(?<=port ).*(?=/)' > ports.txt
+
+###########oneliner to scan for services using open ports found above
+
+nmap -p $(cat ports.txt | paste -sd "," -) $(dig +short poc-server.com | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1) | grep -P "\b(https?|ssl)\b" | tail -n +2 | cut -d '/' -f1
+
+
+
+##how to find obscure cnames/takeover (command to find cnames for takeover)
+
+subfinder -d domain.com -silent | nuclei -t /home/tectra/Desktop/Raj/user/Web/Tools/nuclei-templates-master/dns/dead-host-with-cname.yaml
+chaos -d domain.com -silent | nuclei -t /home/tectra/Desktop/Raj/user/Web/Tools/nuclei-templates-master/dns/dead-host-with-cname.yaml
+
+subfinder -d zolostays.com -silent | nuclei -t /home/tectra/Desktop/Raj/user/Web/Tools/nuclei-templates-master/dns/dead-host-with-cname.yaml
+
+##Finding directories using gobuster
+
+gobuster dir -u https://devstaging.pcapcloud.com/page/ -w /home/tectra/Desktop/Raj/user/Web/websecresearch/wordlists/SecLists-master/Discovery/Web-Content/raft-large-directories.txt -e
+
+
+Also use fastrecon script in your bashprofile
+
+####*********Always look at sources of web page in chrome or firefox (debugger)*******************##############
+
+##using nuclei
+
+subfinder -d innoviti.com -silent | httprobe | nuclei -t ~/Web/Tools/nuclei-templates-master/cves/ -o results.txt
+
+wpscanapikey 4J9cqsdutAuckHYUUXtxEVbLBW54geATiKfOcsO15F8
+
+##One liner to find endpoints in JS files // give any JS file as input
+
+cat  | grep -oh "\"\/[a-zA-Z0-9_?&=/\-\#]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
+
+##Download multiple JSfiles using wget
+
+wget -E -H -k -K -p -e robots=off -i listjs.txt
+
