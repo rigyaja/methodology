@@ -1,6 +1,6 @@
 ##Using amass to do complete subdomain find
 
-amass enum -active -d better.com -brute -w /homeuser/Web/websecresearch/wordlists/SecLists-master/Discovery/DNS/deepmagic.com-prefixes-top50000.txt -src -ip -dir amass4owasp -config /home/user/Web/Tools/Amass/examples/config.ini -o amass_results.txt
+amass enum -active -d domain.tld -brute -w /homeuser/Web/websecresearch/wordlists/SecLists-master/Discovery/DNS/deepmagic.com-prefixes-top50000.txt -src -ip -dir amass4owasp -config /home/user/Web/Tools/Amass/examples/config.ini -o amass_results.txt
 
 ###########oneliner for checking open ports
 
