@@ -24,7 +24,6 @@ subfinder -d zolostays.com -silent | nuclei -t /home/tectra/Desktop/Raj/user/Web
 gobuster dir -u https://devstaging.pcapcloud.com/page/ -w /home/tectra/Desktop/Raj/user/Web/websecresearch/wordlists/SecLists-master/Discovery/Web-Content/raft-large-directories.txt -e
 
 
-Also use fastrecon script in your bashprofile
 
 ####*********Always look at sources of web page in chrome or firefox (debugger)*******************##############
 
