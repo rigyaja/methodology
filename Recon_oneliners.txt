@@ -37,6 +37,16 @@ subfinder -d domain.tld-silent | httprobe | nuclei -t ~/Web/Tools/nuclei-templat
 
 cat  | grep -oh "\"\/[a-zA-Z0-9_?&=/\-\#]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
 
+## Copy all URLs from chrome dev tools to clipboard
+Makes sure network panel is active
+1. In Dev Tools, reload in the network panel and then select 3 dots and go to dock mode( top left), this will open dev tool in separate window
+2. Then press Ctrl+Shift+I , this opens another window of dev tool
+3. In new window of dev tool, go to console and run the command:
+copy(UI.panels.network._networkLogView._dataGrid._rootNode._flatNodes.map(n => n._request._url).join('\n'))
+
+This copies all URLs to clipboard.
+
+
 ##Download multiple JSfiles using wget
 
 wget -E -H -k -K -p -e robots=off -i listjs.txt
