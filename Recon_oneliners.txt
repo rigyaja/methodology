@@ -3,8 +3,11 @@
 amass enum -active -d domain.tld -brute -w /homeuser/Web/websecresearch/wordlists/SecLists-master/Discovery/DNS/deepmagic.com-prefixes-top50000.txt -src -ip -dir amass4owasp -config /home/user/Web/Tools/Amass/examples/config.ini -o amass_results.txt
 
 ###########oneliner for checking open ports
-
+For domains,
 sudo masscan $(dig +short domain.tld | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1) -p0-65535 --rate 1000 --wait 3 2> /dev/null | grep -o -P '(?<=port ).*(?=/)' > ports.txt
+
+For ips,
+sudo masscan -iL ips -p0-65535 --rate 1000 --wait 3 2> /dev/null | grep -o -P '(?<=port ).*(?=/)' > ports.txt
 
 ###########oneliner to scan for services using open ports found above
 
