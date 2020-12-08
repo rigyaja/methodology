@@ -1,0 +1,12 @@
+{
+  "whitePatterns": [
+    {
+      "title": "all URLs",
+      "active": true,
+      "pattern": "*",
+      "type": 1,
+      "protocols": 1
+    }
+  ],
+  "blackPatterns": []
+}
