@@ -1,0 +1,6 @@
+mkdir $1 && cd $1
+assetfinder --subs-only $1 | sort -u > $1-assetfinder.txt
+subfinder -d $1 > $1-subfinder.txt > /dev/null
+amass enum -passive -norecursive -noalts -d $1 > $1-amass.txt &> /dev/null
+cat $1-assetfinder.txt $1-subfinder.txt $1-amass.txt | grep -v "*" | sort -u | sed '/@/d' | sed '/<BR>/d' | sed '/\_/d'| sed '/*/d' > $1-all-finalsubdomains.txt
+cat $1-all-finalsubdomains.txt | sort -u | uniq -u | httpx -silent > $1-all-alive.txt
