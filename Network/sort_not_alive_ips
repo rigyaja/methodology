@@ -1,0 +1,23 @@
+#!/bin/bash
+# This creates 2 more sorted ips files (all_ips and alive_ips)
+# Provide 2 files as input Ex: ./sort_not_alive_ips all_ips alive_ips in that order
+
+color='\033[1;31m'
+nc='\033[0m'
+sfile=$1
+cfile=$2
+if [[ "$1" && "$2" == "" ]]
+then 
+echo -e "Usage: ./sort and compare filename \nExample: ./sort_not_alive_ips allips.txt upips.txt"
+echo -e "Provide all_ips file and ALIVE_ips file in that order only"
+exit
+else
+sort_compare()
+{
+sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n $sfile -o file_s
+sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n $cfile -o file_c 
+comm --nocheck-order -13 file_c file_s > not_alive.txt
+}  
+sort_compare
+fi 
+
