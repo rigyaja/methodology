@@ -2,8 +2,6 @@
 # This creates 2 more sorted ips files (all_ips and alive_ips)
 # Provide 2 files as input Ex: ./sort_not_alive_ips all_ips alive_ips in that order
 
-color='\033[1;31m'
-nc='\033[0m'
 sfile=$1
 cfile=$2
 if [[ "$1" && "$2" == "" ]]
