@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This creates 2 more sorted ips files (all_ips and alive_ips)
 # Provide 2 files as input Ex: ./sort_not_alive_ips all_ips alive_ips in that order
 
@@ -17,5 +17,7 @@ sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n $cfile -o file_c
 comm --nocheck-order -13 file_c file_s > not_alive.txt
 }  
 sort_compare
+#uncomment the below lines if 2 extra files are not needed
+#rm file_s file_c
 fi 
 
