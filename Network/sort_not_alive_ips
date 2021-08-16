@@ -17,7 +17,7 @@ sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n $cfile -o file_c
 comm --nocheck-order -13 file_c file_s > not_alive.txt
 }  
 sort_compare
-#uncomment the below lines if 2 extra files are not needed
+#uncomment the below line if 2 extra files are not needed
 #rm file_s file_c
 fi 
 
